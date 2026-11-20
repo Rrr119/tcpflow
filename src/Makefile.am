@@ -109,6 +109,7 @@ tcpflow_SOURCES = \
 	tcpflow.h util.cpp \
 	scan_md5.cpp \
 	scan_http.cpp \
+	scan_http2.cpp \
 	scan_tcpdemux.cpp \
 	scan_netviz.cpp \
 	pcap_writer.h \

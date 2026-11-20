@@ -158,6 +158,7 @@ public:;
     static void usage();			// print information on flow notation
     static std::string filename_template;	// 
     static std::string outdir;                  // where the output gets written
+    static uint32_t h2_stream_id;               // HTTP/2 stream id rendered by %H (0 for a plain flow)
     flow():id(),vlan(),mac_daddr(),mac_saddr(),tstart(),tlast(),len(),caplen(),packet_count(),session_id(){};
     flow(const flow_addr &flow_addr_,uint64_t id_,const be13::packet_info &pi):
 	flow_addr(flow_addr_),id(id_),vlan(pi.vlan()),

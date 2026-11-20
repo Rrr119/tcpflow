@@ -203,6 +203,14 @@ If you use the -a option, tcpflow will automatically interpret HTTP responses.
        Additional information about these streams, such as their MD5
        hash value, is also written to the DFXML file
 
+Use the `-e http2` scanner to split a reassembled cleartext HTTP/2
+(RFC 7540, h2c) connection into one file per HTTP/2 stream. For a flow
+file named `FLOW`, the DATA payload of stream `n` is written to
+`FLOW-HTTP2STREAM-nnn` (zero-padded stream id); control frames on
+stream 0 do not create files. TLS-encrypted h2 traffic must be
+decrypted first. The `%H` filename-template token renders the active
+HTTP/2 stream id as `h2-NNN` (and `h2-000` for plain flows).
+
 
 tcpflow is similar to 'tcpdump', in that both process packets from the
 wire or from a stored file. But it's different in that it reconstructs

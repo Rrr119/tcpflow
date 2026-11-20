@@ -27,6 +27,7 @@
 
 std::string flow::filename_template("%A.%a-%B.%b%V%v%C%c");
 std::string flow::outdir(".");
+uint32_t flow::h2_stream_id(0);
 
 void flow::usage()
 {
@@ -43,6 +44,7 @@ void flow::usage()
     std::cout << "  %M - (connection_number / 1000000)    % 1000\n";
     std::cout << "  %G - (connection_number / 1000000000) % 1000\n";
     std::cout << "  %S - session ID\n";
+    std::cout << "  %H - HTTP/2 stream id ('h2-NNN'; 'h2-000' for non-HTTP/2 flows)\n";
     std::cout << "  %% - Output a '%'\n";
     std::cout << "\n";
     std::cout << "Default value is: '"<< flow::filename_template <<"'\n";
@@ -139,6 +141,9 @@ std::string flow::filename(uint32_t connection_count, bool is_pcap)
 	    case 'S': // session ID
 		ss << std::setfill('0') << std::setw(20) << session_id;
 		break;
+            case 'H': // HTTP/2 stream id
+                snprintf(buf,sizeof(buf),"h2-%03u",h2_stream_id);
+                break;
 	    case '#': // always output connection count
 		ss << connection_count;
 		break;

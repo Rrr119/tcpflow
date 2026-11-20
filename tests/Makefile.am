@@ -10,6 +10,9 @@
 
 SH_TESTS = test-wifi-bounds.sh \
     test1.sh \
+    test-reassembly.sh \
+    test-http2-streams.sh \
+    test-naming-template.sh \
     test-pdfs.sh \
     test-multifile.sh \
     test-iptree.sh \
@@ -58,6 +61,10 @@ EXTRA_DIST = $(SH_TESTS) \
     test5-lines-randomized2.pcap \
     test5-lines.pcap \
     test7-three-flows.pcap \
+    reassembly-outoforder.pcap \
+    http2-streams.pcap \
+    naming-template.pcap \
+    gen_test_pcaps.py \
     udp.pcap \
     wifi-80211.pcap \
     truncated-tcp.pcap \

@@ -213,6 +213,18 @@ hash value, is also written to the
 .B DFXML report
 file.
 .TP
+.B \-e http2
+Split a reassembled TCP flow that carries HTTP/2 (RFC 7540) into one
+output file per HTTP/2 stream. For a flow file named
+.IR flow ,
+the DATA payload of stream
+.I n
+is written to
+.IR flow -HTTP2STREAM- nnn
+(three-digit, zero-padded stream id). Control frames on stream 0 do not
+create files. Only cleartext HTTP/2 (h2c) can be split; TLS-encrypted
+h2 traffic requires decryption before processing.
+.TP
 .B \-F[format]
 Specifies format for output filenames.
 .RS
@@ -469,6 +481,12 @@ always expands to the connection count.
 .TP
 .B %G
 (connection_number / 1000000000) % 1000
+.TP
+.B %H
+expands to the HTTP/2 stream id as
+.BR h2-NNN ;
+plain (non-HTTP/2) flows render as
+.BR h2-000 .
 .TP
 .B %%
 prints a "%".
